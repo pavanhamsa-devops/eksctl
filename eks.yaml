@@ -1,17 +1,13 @@
-# spot-cluster.yaml
-
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: roboshopp
+  name: roboshop
   region: us-east-1
 
 managedNodeGroups:
-- name: spot
-  instanceTypes: 
-    - t3.medium
-    - t3a.medium
-    - m5.large
-  spot: true
+- name: workers
+  instanceType: t3.medium
   desiredCapacity: 2
+  privateNetworking: false   # 👈 FORCE PUBLIC SUBNETS
+  spot: false                # 👈 disable spot for now
