@@ -1,34 +1,14 @@
+# spot-cluster.yaml
+
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: roboshop-final
+  name: roboshop
   region: us-east-1
-  version: "1.34"
-
-vpc:
-  # Auto-create a new VPC to avoid conflicts
-  cidr: "10.0.0.0/16"
 
 managedNodeGroups:
-  - name: workers
-    instanceType: t3.micro
-    desiredCapacity: 2
-    minSize: 1
-    maxSize: 3
-    amiFamily: AmazonLinux2023
-    volumeSize: 20
-
-cloudWatch:
-  clusterLogging:
-    enableTypes: ["api", "audit", "authenticator", "controllerManager", "scheduler"]
-
-addons:
-  - name: vpc-cni
-  - name: kube-proxy
-  - name: coredns
-  - name: metrics-server
-
-# Disable Auto Mode for eksctl 0.225+
-autoModeConfig:
-  enabled: false
+- name: spot
+  instanceTypes: ["c3.large","c4.large","c5.large","c5d.large","c5n.large","c5a.large"]
+  spot: true
+  desiredCapacity: 2
