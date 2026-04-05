@@ -9,13 +9,8 @@ metadata:
 vpc:
   # Auto-create a new VPC to avoid conflicts
   cidr: "10.0.0.0/16"
-  subnets:
-    public:
-      us-east-1a: { cidr: "10.0.0.0/19" }
-      us-east-1b: { cidr: "10.0.32.0/19" }
-    private:
-      us-east-1a: { cidr: "10.0.64.0/19" }
-      us-east-1b: { cidr: "10.0.96.0/19" }
+  vpc:
+  cidr: "10.0.0.0/16"   # optional, can omit for default
 
 managedNodeGroups:
   - name: workers
