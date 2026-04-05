@@ -9,8 +9,6 @@ metadata:
 vpc:
   # Auto-create a new VPC to avoid conflicts
   cidr: "10.0.0.0/16"
-  vpc:
-  cidr: "10.0.0.0/16"   # optional, can omit for default
 
 managedNodeGroups:
   - name: workers
