@@ -5,27 +5,8 @@ metadata:
   name: roboshop-final
   region: us-east-1
 
-vpc:
-  nat:
-    gateway: Single   # ensures private subnets can access internet
-  subnets:
-    public:
-      us-east-1d:
-        id: ""        # leave blank to let eksctl create
-      us-east-1f:
-        id: ""
-    private:
-      us-east-1d:
-        id: ""
-      us-east-1f:
-        id: ""
-
 managedNodeGroups:
   - name: workers
     instanceType: t3.medium
     desiredCapacity: 2
     privateNetworking: false  # nodes in public subnets
-    volumeSize: 20
-    ssh:
-      allow: true
-      publicKeyName: my-key  # optional, your EC2 key
