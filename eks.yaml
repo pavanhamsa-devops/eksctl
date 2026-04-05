@@ -18,9 +18,6 @@ managedNodeGroups:
     maxSize: 3
     amiFamily: AmazonLinux2023
     volumeSize: 20
-    ssh:
-      allow: true       # allows SSH access
-      publicKeyName: my-key  # change to your key pair
 
 cloudWatch:
   clusterLogging:
