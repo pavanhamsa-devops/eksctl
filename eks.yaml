@@ -9,5 +9,3 @@ managedNodeGroups:
 - name: workers
   instanceType: t3.medium
   desiredCapacity: 2
-  privateNetworking: false   # 👈 FORCE PUBLIC SUBNETS
-  spot: false                # 👈 disable spot for now
