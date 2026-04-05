@@ -4,9 +4,41 @@ kind: ClusterConfig
 metadata:
   name: roboshop-final
   region: us-east-1
+  version: "1.34"
+
+vpc:
+  # Auto-create a new VPC to avoid conflicts
+  cidr: "10.0.0.0/16"
+  subnets:
+    public:
+      us-east-1a: { cidr: "10.0.0.0/19" }
+      us-east-1b: { cidr: "10.0.32.0/19" }
+    private:
+      us-east-1a: { cidr: "10.0.64.0/19" }
+      us-east-1b: { cidr: "10.0.96.0/19" }
 
 managedNodeGroups:
   - name: workers
-    instanceType: t3.medium
+    instanceType: t3.micro
     desiredCapacity: 2
-    privateNetworking: false  # nodes in public subnets
+    minSize: 1
+    maxSize: 3
+    amiFamily: AmazonLinux2023
+    volumeSize: 20
+    ssh:
+      allow: true       # allows SSH access
+      publicKeyName: my-key  # change to your key pair
+
+cloudWatch:
+  clusterLogging:
+    enableTypes: ["api", "audit", "authenticator", "controllerManager", "scheduler"]
+
+addons:
+  - name: vpc-cni
+  - name: kube-proxy
+  - name: coredns
+  - name: metrics-server
+
+# Disable Auto Mode for eksctl 0.225+
+autoModeConfig:
+  enabled: false
