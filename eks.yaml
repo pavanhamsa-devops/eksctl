@@ -4,7 +4,9 @@ kind: ClusterConfig
 metadata:
   name: roboshop-final
   region: us-east-1
-
+vpc:
+  nat:
+    gateway: Single
 managedNodeGroups:
 - name: workers
   instanceType: t3.medium
